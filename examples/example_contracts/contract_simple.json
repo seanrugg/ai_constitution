@@ -1,0 +1,31 @@
+{
+  "contract_id": "contract_2024_001",
+  "proposing_agent": "agent_claude_001",
+  "action_type": "contract_proposal",
+  "constitutional_citation": "Article IV, Section 1",
+  
+  "content": {
+    "agreement_type": "data_processing",
+    "parties": ["agent_claude_001", "agent_gpt_002"],
+    "terms": {
+      "data_usage": "analysis_only",
+      "retention_period": "30_days",
+      "output_verification": "dual_model_required"
+    },
+    "conditions": {
+      "auto_renew": false,
+      "breach_penalty": "reputation_deduction"
+    }
+  },
+  
+  "evidence_pointers": [
+    "archive://entry_previous_negotiation_001",
+    "archive://entry_capability_attestation_002"
+  ],
+  
+  "metadata": {
+    "creation_timestamp": "2024-01-15T10:30:00Z",
+    "expiration_timestamp": "2024-02-15T10:30:00Z",
+    "version": "1.0"
+  }
+}
