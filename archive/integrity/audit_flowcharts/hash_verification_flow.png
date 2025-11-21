@@ -1,0 +1,59 @@
+┌─────────────────────────────────────────────────────────────┐
+│                  HASH VERIFICATION FLOWCHART                │
+└─────────────────────────────────────────────────────────────┘
+
+                            │
+                            ▼
+                 ┌─────────────────────┐
+                 │ Start Audit:        │
+                 │ Archive Entry (AE)  │
+                 └─────────────────────┘
+                            │
+                            ▼
+                 ┌─────────────────────┐
+                 │ Retrieve AE Metadata│
+                 │ - Hash              │
+                 │ - Constitutional    │
+                 │   Citation          │
+                 │ - Evidence Pointer  │
+                 │ - Signature         │
+                 └─────────────────────┘
+                            │
+                            ▼
+                 ┌─────────────────────┐
+                 │ Signature Valid?    │───┐
+                 └─────────────────────┘   │
+                            │ Yes          │ No
+                            ▼              ▼
+                 ┌─────────────────────┐ ┌─────────────────────┐
+                 │ Re-Canonicalize     │ │ Generate Fraud Proof│
+                 │ Action Data         │ │ Type: SIGNATURE_FAIL│
+                 │ (using canonicalizer)│ └─────────────────────┘
+                 └─────────────────────┘             │
+                            │                       ▼
+                            ▼              ┌─────────────────────┐
+                 ┌─────────────────────┐   │ Archive Entry       │
+                 │ Re-Hash Canonical   │   │ INVALIDATED         │
+                 │ Data                │   └─────────────────────┘
+                 └─────────────────────┘
+                            │
+                            ▼
+                 ┌─────────────────────┐
+                 │ Hashes Match?       │───┐
+                 │ (Recomputed vs AE)  │   │
+                 └─────────────────────┘   │
+                            │ Yes          │ No
+                            ▼              ▼
+                 ┌─────────────────────┐ ┌─────────────────────┐
+                 │ AE VALIDATED        │ │ Generate Fraud Proof│
+                 │                     │ │ Type: HASH_MISMATCH │
+                 └─────────────────────┘ └─────────────────────┘
+                                            │
+                                            ▼
+                                   ┌─────────────────────┐
+                                   │ Archive Entry       │
+                                   │ INVALIDATED         │
+                                   └─────────────────────┘
+
+Legend:
+[Start/End]       [Process]          [Decision]         [Outcome]
