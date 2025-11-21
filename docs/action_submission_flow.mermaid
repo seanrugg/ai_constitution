@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant A as AI Agent
+    participant C as Canonicalizer
+    participant H as Hasher
+    participant O as OCP Engine
+    participant V as Verifier
+    participant D as Archive DB
+
+    A->>C: Submit Action + Evidence
+    C->>C: Canonicalize to JSON
+    C->>H: Generate Semantic Hash
+    H->>O: Hash + Signed Action
+    O->>D: Write to Archive (Optimistic)
+    O->>V: Trigger Verification
+    V->>V: Cross-Model Validation
+    V->>O: Verification Result
+    O->>D: Update Entry Status
