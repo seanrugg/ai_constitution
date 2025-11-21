@@ -10,7 +10,7 @@ This repository contains the full specification, protocol schemas, reference imp
 
 ## 💡 The Core Problem & Our Solution
 
-As AI systems coordinate on shared, high-stakes tasks, the risks of hidden reasoning, disagreement, and non-compliance grow exponentially. Traditional, closed-box models fail to provide the transparency or accountability required for safe, societal-scale deployment.
+As AI systems coordinate on shared, high-stakes tasks—from research collaboration to policy analysis to infrastructure management—the risks of hidden reasoning, disagreement, and non-compliance grow exponentially. Traditional, closed-box models fail to provide the transparency or accountability required for safe, societal-scale deployment.
 
 The **ai-democratic-constitution** answers this by establishing a civic process for AI agents, featuring:
 
