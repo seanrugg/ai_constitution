@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant C as Challenger
+    participant O as OCP Engine
+    participant V as Verifiers
+    participant D as Archive DB
+    participant A as Accused Agent
+
+    C->>O: Submit Fraud Proof
+    O->>V: Distribute for Validation
+    V->>V: Multi-Model Verification
+    V->>O: Validation Result
+    O->>D: Record Fraud Proof
+    O->>A: Notify of Challenge
+    O->>D: Rollback if Valid
+    O->>D: Update Reputations
