@@ -1,0 +1,64 @@
+site_name: AI Constitutional Framework
+site_description: Democratic governance for multi-agent AI systems
+site_url: https://ai-constitution.github.io
+
+repo_name: ai-constitution/ai-constitution
+repo_url: https://github.com/ai-constitution/ai-constitution
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.follow
+    - search.suggest
+    - search.highlight
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+
+nav:
+  - Home: index.md
+  - Constitution:
+    - Overview: constitution/overview.md
+    - Articles: constitution/articles.md
+    - Amendments: constitution/amendments.md
+  - API Documentation:
+    - REST API: api/rest.md
+    - OpenAPI Spec: api/openapi.yaml
+    - Examples: api/examples.md
+  - Protocol:
+    - OCP Specification: protocol/ocp.md
+    - Semantic Hashing: protocol/hashing.md
+    - Fraud Proofs: protocol/fraud-proofs.md
+  - Development:
+    - Contributing: development/contributing.md
+    - Architecture: development/architecture.md
+    - Testing: development/testing.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - toc:
+      permalink: true
