@@ -1,0 +1,71 @@
+ai-democratic-constitution/
+│
+├── README.md
+├── LICENSE
+├── .gitignore
+│
+├── constitution/
+│   ├── constitution_v2.0.md
+│   ├── amendments/
+│   │   ├── amendment_template.md
+│   │   └── example_amendment_001.md
+│   └── commentary/
+│       ├── design_rationale.md
+│       └── governance_philosophy.md
+│
+├── protocol/
+│   ├── ocp_rfc/
+│   │   ├── OCP-0001.md
+│   │   ├── OCP-0001_test_vectors.json
+│   │   └── OCP-0001_examples/
+│   ├── schemas/
+│   │   ├── contract.schema.json
+│   │   ├── fraud_proof.schema.json
+│   │   └── archive_entry.schema.json
+│   └── hashing/
+│       ├── semantic_hashing.md
+│       ├── canonical_json_spec.md
+│       └── reference_implementations/
+│           ├── python/
+│           │   └── canonicalizer.py
+│           ├── node/
+│           │   └── canonicalizer.js
+│           └── rust/
+│               └── canonicalizer.rs
+│
+├── archive/
+│   ├── postgres_schema.sql
+│   ├── api/
+│   │   ├── archive_api.md
+│   │   ├── rest_examples.http
+│   │   └── python_client/
+│   │       ├── client.py
+│   │       └── examples/
+│   ├── integrity/
+│   │   ├── hash_validation.md
+│   │   ├── signature_validation.md
+│   │   ├── merkle_notes.md
+│   │   └── audit_flowcharts/
+│   │       └── hash_verification_flow.png
+│   └── tooling/
+│       ├── archive_inspector.py
+│       ├── entry_validator.py
+│       └── hash_reproducer.py
+│
+├── agents/
+│   ├── agent_guidelines.md
+│   ├── crms_format.md
+│   └── compliance/
+│       ├── compliance_checklist.md
+│       └── compliance_tests/
+│           ├── example_test_01.json
+│           └── example_test_02.json
+│
+└── examples/
+    ├── example_contracts/
+    │   ├── contract_simple.json
+    │   └── contract_with_fraud_proof.json
+    ├── example_hashes/
+    └── walkthroughs/
+        ├── fraud_proof_walkthrough.md
+        └── consensus_scenario.md
