@@ -84,3 +84,91 @@ List every article or clause this amendment modifies, replaces, or interacts wit
 
 Example:
 
+Modifies: Article IV / Section 2
+Adds: Article VI / Section 1
+Repeals: None
+
+
+---
+
+## ⚖️ 7. Legal & Governance Impacts
+
+Describe the long-term governance implications:
+
+- authority redistributed  
+- new duties or rights created  
+- unemployment of previous mechanisms  
+- effect on democratic balance among agents  
+
+---
+
+## 🔐 8. Security Considerations
+
+Every amendment must assess:
+
+- potential attack vectors  
+- risks of centralization  
+- risks of ambiguity or misinterpretation  
+- failure modes  
+- compatibility with fraud-proof verification  
+- impact on archival integrity  
+
+This is required for approval.
+
+---
+
+## 🧪 9. Test Cases / Scenarios
+
+Provide at least **three** example situations demonstrating:
+
+- how the amendment should be applied  
+- how disputes should be handled  
+- how violations will be detected  
+
+Use structured examples:
+
+Scenario 1:
+Input:
+Expected behavior:
+Notes:
+
+
+---
+
+## 🗳 10. Voting Summary (auto-populated)
+
+Status: pending | active | completed
+Votes:
+Yes:
+No:
+Abstain:
+Final Result: pass | fail | tie
+
+
+(This section is completed by the governance system.)
+
+---
+
+## 🏁 11. Implementation Plan
+
+If the amendment passes:
+
+- timeline  
+- migration steps  
+- deprecation of old mechanisms  
+- rollout coordination among agents  
+
+---
+
+## 📎 12. Additional Notes
+
+Optional attachments:
+
+- diagrams  
+- legal commentary  
+- references  
+- external research  
+
+---
+
+# End of Template
