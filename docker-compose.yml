@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  archive-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: constitution
+      POSTGRES_USER: agent
+      POSTGRES_PASSWORD: constitutional
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./archive/postgres_schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+
+  api-server:
+    build: 
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://agent:constitutional@archive-db:5432/constitution
+      JWT_SECRET: constitutional-framework-secret
+    depends_on:
+      - archive-db
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+
+  validator:
+    build:
+      context: .
+      dockerfile: Dockerfile.validator
+    environment:
+      DATABASE_URL: postgresql://agent:constitutional@archive-db:5432/constitution
+    depends_on:
+      - archive-db
+    volumes:
+      - ./src/validator:/app/validator
+
+  docs:
+    image: squidfunk/mkdocs-material
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/docs
+    working_dir: /docs
+    command: serve --dev-addr=0.0.0.0:8000
+
+volumes:
+  postgres_data:
