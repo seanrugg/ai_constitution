@@ -1,0 +1,26 @@
+{
+  "test_vectors": [
+    {
+      "name": "basic_ordering",
+      "description": "Different key orders should produce same hash",
+      "input_a": {"z": 3, "a": 1, "b": 2},
+      "input_b": {"a": 1, "b": 2, "z": 3},
+      "expected_canonical": "{\"a\":1,\"b\":2,\"z\":3}",
+      "should_match": true
+    },
+    {
+      "name": "nested_ordering", 
+      "description": "Nested structures should be properly sorted",
+      "input": {"b": 2, "a": {"c": 3, "b": 2, "a": 1}},
+      "expected_canonical": "{\"a\":{\"a\":1,\"b\":2,\"c\":3},\"b\":2}",
+      "should_match": true
+    },
+    {
+      "name": "decimal_precision",
+      "description": "Decimal values should maintain precision",
+      "input": {"amount": "123.45"},
+      "expected_hash": "a7a...",  // Would be filled with actual hash
+      "should_match": true
+    }
+  ]
+}
