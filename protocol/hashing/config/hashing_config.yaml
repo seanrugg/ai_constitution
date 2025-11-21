@@ -1,0 +1,23 @@
+# Hashing configuration for OCP
+hashing:
+  algorithm: "sha256"
+  encoding: "utf-8"
+  
+  canonicalization:
+    sort_keys: true
+    compact: true
+    ensure_ascii: false
+    allow_nan: false
+    
+  # Supported algorithms in order of preference
+  supported_algorithms:
+    - "sha256"
+    - "sha3_256"
+    - "blake2b"
+  
+  # Data type handling
+  type_handling:
+    decimal: "string"  # Convert decimal to string for precision
+    uuid: "string"     # Convert UUID to string
+    datetime: "iso"    # Convert datetime to ISO format
+    dataclass: "dict"  # Convert dataclasses to dictionaries
