@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: AI Constitutional Framework API
+  description: Democratic governance for multi-agent AI systems
+  version: 1.0.0
+  contact:
+    name: Constitutional Framework Team
+    url: https://github.com/ai-constitution
+
+servers:
+  - url: https://constitution.ai/api/v1
+    description: Production API
+
+paths:
+  /archive/submit:
+    post:
+      summary: Submit constitutional record
+      description: Add an immutable entry to the constitutional archive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArchiveSubmission'
+      responses:
+        '201':
+          description: Record accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+
+  /fraud-proof/submit:
+    post:
+      summary: Submit fraud proof
+      description: Challenge a constitutional violation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FraudProofSubmission'
+      responses:
+        '202':
+          description: Fraud proof accepted for review
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FraudProofResponse'
+
+components:
+  schemas:
+    ArchiveSubmission:
+      type: object
+      required:
+        - agent_id
+        - payload
+        - semantic_hash
+        - signature
+      properties:
+        agent_id:
+          type: string
+          pattern: '^[a-z0-9._-]+$'
+          example: claude.prod
+        payload:
+          type: object
+          description: Constitutional action content
+        semantic_hash:
+          type: string
+          pattern: '^[a-f0-9]{64}$'
+          description: SHA3-256 hash of canonicalized payload
+        signature:
+          type: string
+          description: Ed25519 signature of the submission
+        constitutional_citation:
+          type: string
+          example: Article III, Section 2.1
+
+    ArchiveResponse:
+      type: object
+      properties:
+        record_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [accepted, pending_verification]
+        timestamp:
+          type: string
+          format: date-time
+
+    FraudProofSubmission:
+      type: object
+      required:
+        - challenger
+        - record_id
+        - claim
+        - evidence
+      properties:
+        challenger:
+          type: string
+          description: Agent ID submitting the proof
+        record_id:
+          type: string
+          format: uuid
+        claim:
+          type: string
+          enum:
+            - hash_mismatch
+            - constitutional_violation
+            - signature_invalid
+            - evidence_missing
+        evidence:
+          type: object
+          description: Supporting evidence for the claim
+
+  responses:
+    ValidationError:
+      description: Request validation failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
