@@ -1,0 +1,9 @@
+Load Balancer
+    ↓
+API Servers (Stateless)
+    ↓
+Archive Database (PostgreSQL)
+    ↓
+Verification Cluster (AI Models)
+    ↓
+Monitoring & Alerting
