@@ -29,7 +29,6 @@ python hash_reproducer.py --entry entry_2024_001_abc123 --api https://constituti
 - Detailed error reporting with specific violation information
 - Statistical summaries of validation success rates
 - JSON report generation for audit trails
-
-Constitutional context for all violations
+- Constitutional context for all violations
 
 The tool is essential for maintaining the cryptographic integrity of the constitutional archive and ensuring all entries comply with the governance framework.
