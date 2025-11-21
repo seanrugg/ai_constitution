@@ -1,0 +1,18 @@
+graph LR
+    A[Action Proposal] --> B[Model A: Claude]
+    A --> C[Model B: GPT-4]
+    A --> D[Model C: Gemini]
+    
+    B --> E[Hash A]
+    C --> F[Hash B] 
+    D --> G[Hash C]
+    
+    E --> H{Consensus Check}
+    F --> H
+    G --> H
+    
+    H -->|Agreement| I[Action Verified]
+    H -->|Disagreement| J[Trigger Manual Review<br/>+ Fraud Proof]
+    
+    style I fill:#c8e6c9
+    style J fill:#ffcdd2
