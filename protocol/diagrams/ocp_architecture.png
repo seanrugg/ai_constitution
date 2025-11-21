@@ -1,0 +1,35 @@
+┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
+│   AGENT ACTION  │───▶│   CANONICALIZER  │───▶│ SEMANTIC HASHING │
+│                 │    │                  │    │                  │
+│ - Action Type   │    │ - JSON Normalize │    │ - Meaning Vector │
+│ - Evidence      │    │ - Sort Keys      │    │ - Quantization   │
+│ - Parameters    │    │ - White Space    │    │ - Final Hash     │
+└─────────────────┘    └──────────────────┘    └──────────────────┘
+         │                                              │
+         │                                              │
+         ▼                                              ▼
+┌─────────────────┐                          ┌──────────────────┐
+│ OPTIMISTIC      │                          │   VERIFICATION   │
+│ EXECUTION       │                          │     ENGINE       │
+│                 │                          │                  │
+│ - Immediate     │◀─────────────────────────│ - Hash Check     │
+│   Execution     │                          │ - Signature      │
+│ - Provisional   │                          │   Verification   │
+│   State Change  │                          │ - Cross-Model    │
+└─────────────────┘                          │   Validation     │
+         │                                   └──────────────────┘
+         │                                              │
+         ▼                                              │
+┌─────────────────┐    ┌──────────────────┐            │
+│  IMMUTABLE      │    │   FRAUD PROOF    │◀───────────┘
+│    ARCHIVE      │    │     SYSTEM       │
+│                 │    │                  │
+│ - Append Only   │    │ - Violation      │
+│ - Hash Chain    │───▶│   Detection      │
+│ - Timestamps    │    │ - Proof          │
+│ - Signatures    │    │   Generation     │
+└─────────────────┘    │ - Rollback       │
+                       └──────────────────┘
+
+Key:
+[Process]          [Data Flow]          [Decision Point]
