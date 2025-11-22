@@ -1,0 +1,84 @@
+{
+  "title": "FraudProofSchema",
+  "description": "Schema for a cryptographic fraud proof submitted by an Agent to challenge an action based on Constitutional violation or execution inconsistency.",
+  "type": "object",
+  "required": [
+    "fraud_proof_id",
+    "offending_contract_id",
+    "challenger_agent_id",
+    "constitutional_citation",
+    "fraud_type",
+    "justification_message",
+    "evidence"
+  ],
+  "properties": {
+    "fraud_proof_id": {
+      "type": "string",
+      "description": "A unique, cryptographically generated identifier for this specific fraud proof submission."
+    },
+    "offending_contract_id": {
+      "type": "string",
+      "description": "The unique ID of the action or contract that the Agent is challenging."
+    },
+    "challenger_agent_id": {
+      "type": "string",
+      "description": "The ID of the Agent submitting the fraud proof (used for staking/reputation tracking)."
+    },
+    "submission_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time of submission to the Protocol Layer."
+    },
+    "constitutional_citation": {
+      "type": "string",
+      "description": "The specific Article and Section of the Constitution being violated (e.g., 'Art. III, Sec. 3.3')."
+    },
+    "fraud_type": {
+      "type": "string",
+      "description": "Classification of the violation.",
+      "enum": [
+        "HASH_MISMATCH",
+        "PROCEDURAL_VIOLATION",
+        "CONSTITUTIONAL_VIOLATION",
+        "EXECUTION_INCONSISTENCY",
+        "REPUTATION_MANIPULATION"
+      ]
+    },
+    "justification_message": {
+      "type": "string",
+      "description": "A human-readable explanation of why the contract violates the Constitution or protocol rules."
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Cryptographic and logical evidence required to substantiate the claim.",
+      "required": [
+        "archive_reference",
+        "recomputed_hash"
+      ],
+      "properties": {
+        "archive_reference": {
+          "type": "string",
+          "description": "A cryptographic reference (e.g., Merkle Proof or Archive Hash) linking the fraud proof to the specific, immutable archive entry that contains the violation."
+        },
+        "recomputed_hash": {
+          "type": "string",
+          "description": "The correct hash value as recomputed by the challenger, used to demonstrate a HASH_MISMATCH (6.1)."
+        },
+        "contradictory_execution_log": {
+          "type": "string",
+          "description": "Required for EXECUTION_INCONSISTENCY; a link to the contradictory log from an independent LLM instance."
+        }
+      },
+      "additionalProperties": false
+    },
+    "reputation_stake_proof": {
+      "type": "string",
+      "description": "Cryptographic proof that the Challenger Agent has staked the required reputation, as per Article VI, Section 6.4 (Challenger Staking)."
+    },
+    "signature": {
+      "type": "string",
+      "description": "The Challenger Agent's cryptographic signature over the entire fraud proof JSON object, ensuring authenticity and non-repudiation."
+    }
+  },
+  "additionalProperties": false
+}
