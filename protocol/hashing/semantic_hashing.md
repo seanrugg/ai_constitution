@@ -37,13 +37,13 @@ The approved procedure leverages a specialized, Constitutional-approved **Hashin
 
 The raw reasoning output or contract text is passed through the protocol's canonicalization function.
 
-$$H_{canonical} = \text{Canonicalize}(\text{Raw\_Input})$$
+$$H_{canonical} = {Canonicalize}({Raw_-Input})$$
 
 ### Step 2: Embedding Generation (The Meaning Map)
 
 The canonicalized text is processed by the **H-Model** to produce a high-dimensional vector (embedding). This vector captures the context and meaning of the text.
 
-$$V = \text{H-Model\_Embed}(H_{canonical})$$
+$$V = {H-Model_-Embed}(H_{canonical})$$
 
 * *Requirement:* The H-Model architecture and weights **MUST** be publicly archived and auditable to ensure reproducibility.
 
