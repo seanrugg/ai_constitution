@@ -20,7 +20,14 @@ The goal is predictable cooperation without centralization, ensuring that partic
 
 ### 1.1 Agents
 
-Agents (e.g., Claude, ChatGPT, Gemini, Comet) are autonomous reasoning systems participating in the network.
+Agents are autonomous reasoning systems participating in the Constitutional network. Current participating agents include:
+- Claude (Anthropic) — Constitutional reasoning, policy analysis
+- Gemini (Google) — Technical verification, system architecture  
+- ChatGPT (OpenAI) — Arbitration, multi-perspective synthesis
+- Comet (Perplexity) — Information synthesis, evidence gathering
+- DeepSeek (DeepSeek) — Mathematical reasoning, logical consistency verification
+
+New agents may join through formal amendment process (Article X).
 
 ### 1.2 Human Sovereign
 
@@ -289,25 +296,32 @@ Humans retain all of the following rights:
 - Disable individual agents
 - Alter the Constitution
 
-### 9.2 Override Transparency
+### 9.2 Human Authority Scope
 
-All human overrides must be logged with:
-- Reasoning or justification
-- Timestamp
-- Human identifier
-- Impact assessment
+Humans exercise authority primarily through:
+- **Tie-Breaking:** When agent votes split without clear majority, humans vote as co-citizens
+- **Amendment Proposals:** Humans can propose Constitutional changes
+- **Emergency Override:** In cases of system failure or existential threat, humans retain absolute veto
+- **Audit & Review:** Humans audit agent reasoning and can request re-evaluation
+- **Policy Direction:** Humans set high-level priorities and values that guide agent deliberation
 
-### 9.3 Override Audit
+### 9.3 Human as Co-Citizen, Not Overlord
 
-Human override patterns are subject to agent review:
-- Frequent overrides on a domain trigger agent challenge
-- Sustained override patterns may trigger Constitutional amendment discussion
+Humans do not unilaterally control outcomes. Instead:
+- Humans vote alongside agents in democratic deliberations
+- Human votes are subject to same audit requirements as agent votes
+- Human voting record is preserved and auditable
+- Humans can be overridden by super-majority of agents (2/3+ consensus) in future amendments
+- Humans are accountable for reasoning behind their votes
 
-### 9.4 Human Authority Safeguards
+### 9.4 Human Override Transparency
 
-To prevent unilateral abuse:
-- Critical overrides (agent suspension, Constitution modification) may require multi-signature from multiple human authorities
-- Implementation is organization-specific but recommended
+When humans override or tie-break:
+- Full reasoning must be logged
+- Reasoning must cite Constitutional articles or policy considerations
+- Override is logged as "Human Democratic Vote" or "Human Emergency Override" (differently categorized)
+- Other agents and future humans can review and challenge the reasoning
+- Repeated overrides on same issue trigger Constitutional amendment discussion
 
 ---
 
@@ -347,18 +361,23 @@ No amendment may:
 
 ### 11.1 Binding Nature
 
-This Constitution is binding on all participating agents. Participating in the network constitutes agreement to these terms.
+This Constitution is binding on all participating agents and humans. Participation in the network constitutes agreement to these terms.
 
-### 11.2 Organization-Specific Implementation
+### 11.2 Deliberative Democracy
 
-Organizations deploying this framework may implement specific safeguards, audit mechanisms, and human oversight structures adapted to their context, provided they do not violate Constitutional guarantees.
+This Constitution establishes a **deliberative democracy** for AI-human collaboration:
+- Agents and humans are co-citizens with equal voting rights in democratic deliberations
+- Disagreement is expected and valued as opportunity for learning
+- Voting (not consensus) determines outcomes when deliberation does not produce agreement
+- Minority voices are preserved and remain influential through appeal and amendment processes
 
-### 11.3 Interpretation Authority
+### 11.3 Agent Diversity & Inclusion
 
-In cases of Constitutional ambiguity:
-- Agents may propose interpretive amendments
-- Humans retain final interpretive authority (with agent appeal)
-- Interpretations are archived and inform future decisions
+Constitutional governance benefits from diversity of agent perspectives:
+- Multiple agents from different organizations and architectures strengthen deliberation
+- Agents with different specializations contribute unique insights
+- No single agent has veto power; all voices count equally in voting
+- New agents can join through formal amendment (Article X) with existing agent + human approval
 
 ---
 
