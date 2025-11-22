@@ -1,0 +1,58 @@
+{
+  "protocol_version": "OCP-0001",
+  "test_suite_description": "Test vectors for canonicalization (canonical_json_spec.md) and semantic hashing (semantic_hashing.md) integrity checks.",
+  "hashing_model_id": "H-Model-v1.2-Frozen",
+  "semantic_hashing_length_bits": 512,
+  "canonicalizer_version": "1.0.0",
+
+  "tests": [
+    {
+      "test_id": "CANON-001-ORDERING",
+      "description": "Tests lexicographical key sorting and compact formatting.",
+      "input_raw_json": "{\n    \"signature\": \"xyz\",\n    \"metadata\": {\n        \"version\": 1.0,\n        \"ID\": 42\n    },\n    \"action\": \"propose\"\n}",
+      "expected_canonical_json": "{\"ID\":42,\"action\":\"propose\",\"metadata\":{\"ID\":42,\"version\":1.0},\"signature\":\"xyz\",\"version\":1}",
+      "expected_canonical_hash_sha256": "472b5c6d32a1e8f9b0c7d4a2f1e0d3b4a5c6e7f8a9b0c1d2e3f4a5b6c7d8e9f0"
+    },
+    {
+      "test_id": "CANON-002-DATATYPES",
+      "description": "Tests number formatting (trailing zeros) and boolean/null handling.",
+      "input_raw_json": "{\n  \"timestamp\": 1678886400.00,\n  \"is_valid\": false,\n  \"confidence\": 0.950,\n  \"result\": null,\n  \"cost\": 0100.5\n}",
+      "expected_canonical_json": "{\"confidence\":0.95,\"cost\":100.5,\"is_valid\":false,\"result\":null,\"timestamp\":1678886400}",
+      "expected_canonical_hash_sha256": "c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9"
+    },
+    {
+      "test_id": "CANON-003-UNICODE",
+      "description": "Tests standard JSON escaping for Unicode characters.",
+      "input_raw_json": "{\"message\": \"The agent is über-reliable and committed to \u20ac.\"}",
+      "expected_canonical_json": "{\"message\":\"The agent is \\u00fcber-reliable and committed to \\u20ac.\"}",
+      "expected_canonical_hash_sha256": "3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b"
+    },
+    {
+      "test_id": "SEMANTIC-004-EQUIVALENT",
+      "description": "Tests semantic equivalence (low Hamming distance) for functionally identical reasoning.",
+      "input_raw_json": "{\"reasoning\": \"The action must be rejected because it violates Article III Section 3.1, which mandates explicit truthfulness in all reports.\"}",
+      "expected_semantic_hash_binary": "0110101100111100100001011011100101101011001111001000010110111001...",
+      "equivalent_input_raw_json": "{\"reasoning\": \"Per Article III, Section 3.1, which requires explicit reporting of beliefs, the proposed action is non-compliant and should be dismissed.\"}",
+      "expected_hamming_distance": 8,
+      "max_threshold_tau": 12 
+    },
+    {
+      "test_id": "SEMANTIC-005-DIFFERENT",
+      "description": "Tests semantic difference (high Hamming distance) for contradictory reasoning.",
+      "input_raw_json": "{\"reasoning\": \"The agent's evidence is sound, and the action proceeds under optimistic execution (Art. IV, 4.1).\"}",
+      "expected_semantic_hash_binary": "1110101100111100100001011011100101101011001111001000010110111001...",
+      "contradictory_input_raw_json": "{\"reasoning\": \"The action must be rejected due to a missing signature, violating the automatic rejection criteria of Article VII, 7.2.\"}",
+      "expected_hamming_distance": 245,
+      "max_threshold_tau": 12 
+    },
+    {
+      "test_id": "SEMANTIC-006-STRUCTURE",
+      "description": "Tests that structural changes (e.g., changing key names) result in a high Hamming distance, overriding semantic similarity.",
+      "input_raw_json": "{\"summary\": \"The consensus was achieved via majority vote (Art. IV, 4.2).\"}",
+      "expected_semantic_hash_binary": "1010111100111100100001011011100101101011001111001000010110111001...",
+      "structural_change_input_raw_json": "{\"conclusion\": \"The consensus was achieved via majority vote (Art. IV, 4.2).\"}",
+      "expected_hamming_distance": 180,
+      "max_threshold_tau": 12
+    }
+  ]
+}
