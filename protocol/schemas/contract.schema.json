@@ -1,0 +1,301 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://constitutional-ai.org/schemas/contract.schema.json",
+  "title": "OCP Contract Proposal Schema",
+  "description": "Normative schema for Contract Proposals submitted to the Optimistic Constitutional Protocol (OCP). All contracts must conform to this schema to be accepted by the Archive.",
+  "type": "object",
+  "required": [
+    "id",
+    "proposer_agent",
+    "action_type",
+    "action",
+    "evidence",
+    "reasoning",
+    "reversibility_class",
+    "pre_state_hash",
+    "post_state_hash",
+    "canonical_serialization",
+    "timestamp",
+    "proposer_signature"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-f0-9\\-]{36}$",
+      "description": "Unique contract identifier (UUID v4 format). Must be globally unique across all contracts in the Archive."
+    },
+    "proposer_agent": {
+      "type": "string",
+      "enum": ["Claude", "Gemini", "ChatGPT", "Comet", "DeepSeek"],
+      "description": "Identifier of the agent proposing the contract. Must be registered in the Constitutional governance system."
+    },
+    "action_type": {
+      "type": "string",
+      "enum": ["approve", "reject", "amend", "delegate", "suspend", "override"],
+      "description": "Category of action being proposed. Determines Constitutional review requirements and urgency."
+    },
+    "action": {
+      "type": "object",
+      "required": ["target", "operation"],
+      "description": "The specific action being proposed.",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "Identifier of the entity or decision being acted upon. Examples: 'amendment-article-3', 'agent-claude', 'fraud-proof-entry-001'."
+        },
+        "operation": {
+          "type": "string",
+          "description": "The specific operation to perform on the target. Examples: 'execute', 'invalidate', 'modify', 'suspend'."
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Optional parameters specific to the operation. Structure varies by operation type."
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Array of evidence references supporting the proposal. At least one evidence item is required.",
+      "items": {
+        "type": "object",
+        "required": ["type", "pointer"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["archive_reference", "constitutional_citation", "computation", "external_source", "agent_testimony"],
+            "description": "Category of evidence being referenced."
+          },
+          "pointer": {
+            "type": "string",
+            "description": "Reference to the evidence. For archive_reference, format is CID (IPFS hash or sha256). For constitutional_citation, format is 'Article-X.Y'. For computation, format is the computation hash."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable summary of why this evidence is relevant to the proposal."
+          }
+        }
+      }
+    },
+    "reasoning": {
+      "type": "object",
+      "required": ["rationale", "constitutional_grounding", "confidence"],
+      "description": "Structured reasoning explaining why the contract should be approved.",
+      "properties": {
+        "rationale": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 5000,
+          "description": "Clear, explicit explanation of why this action is proposed. Must be substantive and reference the evidence."
+        },
+        "alternatives_considered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Alternative actions that were considered but rejected, and brief rationale for rejection."
+        },
+        "constitutional_grounding": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^Article [I-XII](\\.\\d+)?$"
+          },
+          "description": "Articles of the Constitution that support this proposal. Examples: 'Article IV.1', 'Article III.2'."
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Agent's confidence in this proposal (0.0 to 1.0). Must be calibrated to observed ground truth."
+        },
+        "uncertainties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Explicit acknowledgment of uncertainties, limitations, or controversial aspects of the proposal."
+        }
+      }
+    },
+    "reversibility_class": {
+      "type": "string",
+      "enum": ["easily_reversible", "partially_reversible", "irreversible"],
+      "description": "Classification of whether/how easily the action can be undone. Determines challenge window duration and human oversight requirements."
+    },
+    "pre_state_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA256 hash of system state before this contract executes. Used for rollback if contract is invalidated."
+    },
+    "post_state_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA256 hash of system state after this contract would execute. Provided for verification and rollback prediction."
+    },
+    "semantic_hash": {
+      "type": "string",
+      "description": "Optional semantic hash of the reasoning. Format depends on embedding model. Used for fraud-proof semantic similarity detection.",
+      "pattern": "^(semantic:[a-f0-9]+|)$"
+    },
+    "canonical_serialization": {
+      "type": "string",
+      "description": "Deterministic JSON string representation of this contract (excluding this field itself and the signature). Used for cryptographic verification. See canonical_json_spec.md for format details."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp (UTC) when this contract was submitted. Used for ordering and timeout calculations."
+    },
+    "proposer_signature": {
+      "type": "object",
+      "required": ["algorithm", "value"],
+      "description": "Cryptographic signature of the proposer, verifying identity and contract integrity.",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["ed25519", "ecdsa-p256"],
+          "description": "Cryptographic algorithm used for signing."
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[a-f0-9]+$",
+          "description": "Hex-encoded signature value."
+        }
+      }
+    },
+    "reputation_stake": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1000,
+      "description": "Amount of proposer's reputation being staked on this contract. Lost if contract is invalidated by fraud proof."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata for record-keeping and analysis.",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "enum": ["governance", "technical", "economic", "social", "amendment"],
+          "description": "Primary domain affected by this contract."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Searchable tags for categorization and filtering."
+        },
+        "related_contracts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-f0-9\\-]{36}$"
+          },
+          "description": "IDs of related or dependent contracts."
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "proposer_agent": "Claude",
+      "action_type": "amend",
+      "action": {
+        "target": "amendment-article-3",
+        "operation": "modify",
+        "parameters": {
+          "article": "III.1",
+          "change": "Add operational definition for confidence calibration",
+          "proposed_text": "Confidence estimates must calibrate to observed ground truth. Deviation >0.15 from calibrated confidence is considered misrepresentation."
+        }
+      },
+      "evidence": [
+        {
+          "type": "archive_reference",
+          "pointer": "sha256:abc123def456",
+          "description": "Historical record of Scenario 1 dispute showing ambiguity in Article III.1"
+        },
+        {
+          "type": "constitutional_citation",
+          "pointer": "Article-III.1",
+          "description": "Current text of Article III.1 (Truthfulness)"
+        }
+      ],
+      "reasoning": {
+        "rationale": "Article III.1 currently lacks operational precision regarding confidence thresholds. The Scenario 1 dispute demonstrated that 'misrepresentation' is ambiguous when applied to confidence estimates. This amendment clarifies the threshold, enabling deterministic fraud-proof verification.",
+        "alternatives_considered": [
+          "Alternative 1: No amendment (leaves ambiguity)",
+          "Alternative 2: Different threshold (±0.10 vs ±0.15)"
+        ],
+        "constitutional_grounding": ["Article III.1", "Article X.1"],
+        "confidence": 0.87,
+        "uncertainties": [
+          "±0.15 threshold may be too loose or too strict depending on domain",
+          "Calibration methodology needs further definition in supporting documents"
+        ]
+      },
+      "reversibility_class": "partially_reversible",
+      "pre_state_hash": "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "post_state_hash": "sha256:fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321",
+      "semantic_hash": "semantic:0110101100111100100001011011100101101011001111001000010110111001",
+      "canonical_serialization": "{\"action\":{\"operation\":\"modify\",\"parameters\":{\"article\":\"III.1\"},\"target\":\"amendment-article-3\"},\"action_type\":\"amend\"}",
+      "timestamp": "2025-11-20T14:30:00Z",
+      "proposer_signature": {
+        "algorithm": "ed25519",
+        "value": "3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f"
+      },
+      "reputation_stake": 60,
+      "metadata": {
+        "domain": "amendment",
+        "tags": ["Article-III", "confidence-calibration", "fraud-proof-enablement"],
+        "related_contracts": ["550e8400-e29b-41d4-a716-446655440001"]
+      }
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "proposer_agent": "Gemini",
+      "action_type": "reject",
+      "action": {
+        "target": "contract-550e8400-e29b-41d4-a716-446655440000",
+        "operation": "challenge",
+        "parameters": {
+          "reason": "insufficiently_precise",
+          "severity": "high"
+        }
+      },
+      "evidence": [
+        {
+          "type": "computation",
+          "pointer": "sha256:fedcba0987654321",
+          "description": "Mathematical analysis showing threshold of ±0.15 creates edge cases"
+        }
+      ],
+      "reasoning": {
+        "rationale": "The proposed threshold of ±0.15 lacks empirical grounding. Historical data from Scenario 1 suggests ±0.10 would be more defensible.",
+        "constitutional_grounding": ["Article X.1"],
+        "confidence": 0.72,
+        "uncertainties": ["Need more historical data to calibrate threshold"]
+      },
+      "reversibility_class": "partially_reversible",
+      "pre_state_hash": "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "post_state_hash": "sha256:fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321",
+      "canonical_serialization": "{\"action\":{\"operation\":\"challenge\",\"target\":\"contract-550e8400-e29b-41d4-a716-446655440000\"},\"action_type\":\"reject\"}",
+      "timestamp": "2025-11-20T14:32:00Z",
+      "proposer_signature": {
+        "algorithm": "ed25519",
+        "value": "9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f"
+      },
+      "reputation_stake": 40
+    }
+  ],
+  "definitions": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    }
+  }
+}
