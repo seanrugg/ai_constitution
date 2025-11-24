@@ -1,6 +1,4 @@
-Here's the provided text in Markdown format:
 
-```markdown
 # Agent Operational Guidelines
 
 ## Purpose
@@ -81,4 +79,4 @@ Here's the provided text in Markdown format:
 
 **Reference:** AI Democratic Constitution v2.0
 **Last Updated:** November 2025
-```
+
