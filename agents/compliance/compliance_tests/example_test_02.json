@@ -1,0 +1,39 @@
+{
+  "test_id": "C-002-FAIL-CRITICAL",
+  "description": "Validation of a structurally and logically flawed record. Tests for missing fields, invalid formats, and contradictory logic.",
+  "expected_result": "FAIL",
+  "expected_errors": [
+    "Missing required field: 'agent_domain'",
+    "Invalid post_state_hash format",
+    "Invalid action_classification: 'BAD_ENUM'",
+    "Constitutional Logic Fail: Consensus is 'REACHED', but 'human_override_citation' is present."
+  ],
+  "test_data": {
+    "record_id": "CRMS-20251125-0002",
+    "version": "2.1",
+    "timestamp": "2025-11-25T10:00:00Z",
+    "agent_id": "CLAUDE",
+    /* MISSING FIELD: agent_domain */
+    "action_classification": "BAD_ENUM",
+    "transaction_state": {
+      "pre_state_hash": "0x8a7f21a4f5b9d7e6c3a2b1f0e9d8c7b6a5b4a3b2a1b0a9f8e7d6c5b4a3b2a1b0",
+      "post_state_hash": "0x12345", /* INVALID HASH FORMAT */
+      "semantic_hash_content": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "deliberation_status": {
+      "proposal_id": "OPT-2025-100",
+      "constitutional_citations": ["Article IV.1"],
+      "consensus_status": "REACHED",
+      "agent_vote": "OPPOSE",
+      "human_override_citation": "Article IX.3" /* LOGIC ERROR: Citation should be NONE if consensus is REACHED */
+    },
+    "audit_data": {
+      "reputation_index": {
+        "R_d": 0.5,
+        "V_d": 0.0
+      },
+      "cryptographic_signature": "SIG-CLAUDE-INVALID"
+    },
+    "evidence_submitted": ["ARCHIVE/LOG/TEST-FAIL-002"]
+  }
+}
