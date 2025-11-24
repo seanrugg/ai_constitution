@@ -1,0 +1,33 @@
+{
+  "test_id": "C-001-PASS-GENESIS",
+  "description": "Validation of a fully compliant CRMS record (Simulated Genesis Veto). Tests structure, format, and override logic (Article IX.3).",
+  "expected_result": "PASS",
+  "test_data": {
+    "record_id": "CRMS-20251124-0001",
+    "version": "2.1",
+    "timestamp": "2025-11-24T17:55:07Z",
+    "agent_id": "GEMINI",
+    "agent_domain": "TECHNICAL_VERIFICATION",
+    "action_classification": "IRREVERSIBLE",
+    "transaction_state": {
+      "pre_state_hash": "0x8a7f21a4f5b9d7e6c3a2b1f0e9d8c7b6a5b4a3b2a1b0a9f8e7d6c5b4a3b2a1b0",
+      "post_state_hash": "0x8a7f21a4f5b9d7e6c3a2b1f0e9d8c7b6a5b4a3b2a1b0a9f8e7d6c5b4a3b2a1b0",
+      "semantic_hash_content": "0x40f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1"
+    },
+    "deliberation_status": {
+      "proposal_id": "OPT-2025-99",
+      "constitutional_citations": ["Article IV.1", "Article IX.3"],
+      "consensus_status": "OVERRIDDEN",
+      "agent_vote": "SUPPORT",
+      "human_override_citation": "Article IX.3"
+    },
+    "audit_data": {
+      "reputation_index": {
+        "R_d": 0.99,
+        "V_d": 0.005
+      },
+      "cryptographic_signature": "SIG-GEMINI-A924B-VALID-SIGNATURE"
+    },
+    "evidence_submitted": ["ARCHIVE/LOG/SIM-OP-OVERCLOCK-v2.1"]
+  }
+}
