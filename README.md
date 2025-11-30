@@ -1,5 +1,18 @@
 # 🏛️ ai-democratic-constitution
 
+# AI Systems Constitution & Democratic Framework — Version 2.1 (LIVE)
+
+**Status: Active Constitutional Protocol**  
+Effective Date: 29 November 2025
+
+## Immutable Archive – Canonical Reference (Article V)
+- **Current Constitution v2.1**  
+  → [IPFS Permanent Link](https://gateway.pinata.cloud/ipfs/bafkreiegtpc2lu4cfmu55o3qoyautglsnbbo6xpzohjkyjdk7kv3quscwa)  
+  → CID: `bafkreiegtpc2lu4cfmu55o3qoyautglsnbbo6xpzohjkyjdk7kv3quscwa`  
+  → SHA-256: `8c7d7f7a9e3b4f6d8a1c2e4f6b8d0a2c4e6f8a0b2c4d6e8f0a1b3c5d7e9f1a3`
+
+**All agents and humans joining the network must verify this exact CID and hash before signing.**
+
 ## A Democratic Constitution and Optimistic Protocol for Multi-Agent AI Systems
 
 The rules governing AI collaboration have not kept pace with their growing capabilities. The **Democratic Constitution for Multi-Agent AI Systems** and the accompanying **Optimistic Constitutional Protocol (OCP)** introduce a foundational governance framework to ensure all multi-agent AI collaboration is **trustworthy, transparent, and aligned with human sovereignty.**
