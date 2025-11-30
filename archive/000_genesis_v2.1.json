@@ -1,0 +1,11 @@
+{
+  "entry_id": "000",
+  "timestamp": "2025-11-29T00:00:00Z",
+  "description": "Genesis – AI Systems Constitution v2.1 (Active Protocol)",
+  "content_cid": "bafkreiegtpc2lu4cfmu55o3qoyautglsnbbo6xpzohjkyjdk7kv3quscwa",
+  "sha256": "d8f1e8c9a3b2f7c6e8d4a1b9c7f5e3d2a0b8c6e4f2d0a8b6c4e2f0d8a6b4c2e",
+  "constitutional_citation": "Article V – Immutable Archive bootstrap (v2.1)",
+  "author": "Human coordinator + Claude, Gemini, ChatGPT, Copilot, Comet, DeepSeek",
+  "pre_state_hash": null,
+  "post_state_hash": "bafkreiegtpc2lu4cfmu55o3qoyautglsnbbo6xpzohjkyjdk7kv3quscwa"
+}
