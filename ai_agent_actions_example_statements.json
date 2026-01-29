@@ -3,9 +3,9 @@
     "id": "7c1f4d7d-25b4-4a7c-9b6d-5d6c2e9b1abc",
     "actor": {
       "objectType": "Agent",
-      "name": "Rugge CIV Sean M US",
+      "name": "Doe John",
       "account": {
-        "homePage": "https://id.example.mil",
+        "homePage": "https://id.example.domain",
         "name": "u-12345"
       }
     },
@@ -16,7 +16,7 @@
       }
     },
     "object": {
-      "id": "https://ops.example.mil/tasks/ops-9087",
+      "id": "https://ops.example.domain/tasks/ops-9087",
       "definition": {
         "type": "https://w3id.org/xapi/ai/activity-type/task",
         "name": {
@@ -29,7 +29,7 @@
       "contextActivities": {
         "parent": [
           {
-            "id": "https://ops.example.mil/sessions/sess-5577",
+            "id": "https://ops.example.domain/sessions/sess-5577",
             "objectType": "Activity"
           }
         ],
@@ -56,7 +56,7 @@
       "objectType": "Agent",
       "name": "OpsAgent-Alpha",
       "account": {
-        "homePage": "https://agents.example.mil",
+        "homePage": "https://agents.example.domain",
         "name": "agent-alpha"
       }
     },
@@ -67,7 +67,7 @@
       }
     },
     "object": {
-      "id": "https://ops.example.mil/tasks/ops-9087",
+      "id": "https://ops.example.domain/tasks/ops-9087",
       "definition": {
         "type": "https://w3id.org/xapi/ai/activity-type/task",
         "name": {
@@ -87,13 +87,13 @@
       "contextActivities": {
         "parent": [
           {
-            "id": "https://ops.example.mil/runs/run-9012",
+            "id": "https://ops.example.domain/runs/run-9012",
             "objectType": "Activity"
           }
         ],
         "grouping": [
           {
-            "id": "https://ops.example.mil/sessions/sess-5577",
+            "id": "https://ops.example.domain/sessions/sess-5577",
             "objectType": "Activity"
           }
         ],
@@ -117,7 +117,7 @@
       "objectType": "Agent",
       "name": "OpsAgent-Alpha",
       "account": {
-        "homePage": "https://agents.example.mil",
+        "homePage": "https://agents.example.domain",
         "name": "agent-alpha"
       }
     },
@@ -128,7 +128,7 @@
       }
     },
     "object": {
-      "id": "https://db.example.mil/finance/ledger-fy26",
+      "id": "https://db.example.domain/finance/ledger-fy26",
       "definition": {
         "type": "https://w3id.org/xapi/ai/activity-type/resource",
         "name": {
@@ -145,13 +145,13 @@
       "contextActivities": {
         "parent": [
           {
-            "id": "https://ops.example.mil/runs/run-9012",
+            "id": "https://ops.example.domain/runs/run-9012",
             "objectType": "Activity"
           }
         ],
         "grouping": [
           {
-            "id": "https://ops.example.mil/sessions/sess-5577",
+            "id": "https://ops.example.domain/sessions/sess-5577",
             "objectType": "Activity"
           }
         ],
@@ -162,7 +162,7 @@
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/resource-uri": "https://db.example.mil/finance/ledger-fy26",
+        "https://w3id.org/xapi/ai/extensions/resource-uri": "https://db.example.domain/finance/ledger-fy26",
         "https://w3id.org/xapi/ai/extensions/resource-hash": "sha256:2b7e151628aed2a6abf7158809cf4f3c",
         "https://w3id.org/xapi/ai/extensions/resource-version": "v1"
       }
@@ -176,7 +176,7 @@
       "objectType": "Agent",
       "name": "OpsAgent-Alpha",
       "account": {
-        "homePage": "https://agents.example.mil",
+        "homePage": "https://agents.example.domain",
         "name": "agent-alpha"
       }
     },
@@ -187,7 +187,7 @@
       }
     },
     "object": {
-      "id": "https://tools.example.mil/mcp/finance-summary",
+      "id": "https://tools.example.domain/mcp/finance-summary",
       "definition": {
         "type": "https://w3id.org/xapi/ai/activity-type/tool",
         "name": {
@@ -213,13 +213,13 @@
       "contextActivities": {
         "parent": [
           {
-            "id": "https://ops.example.mil/runs/run-9012",
+            "id": "https://ops.example.domain/runs/run-9012",
             "objectType": "Activity"
           }
         ],
         "grouping": [
           {
-            "id": "https://ops.example.mil/sessions/sess-5577",
+            "id": "https://ops.example.domain/sessions/sess-5577",
             "objectType": "Activity"
           }
         ],
@@ -251,7 +251,7 @@
       "objectType": "Agent",
       "name": "OpsAgent-Alpha",
       "account": {
-        "homePage": "https://agents.example.mil",
+        "homePage": "https://agents.example.domain",
         "name": "agent-alpha"
       }
     },
@@ -262,7 +262,7 @@
       }
     },
     "object": {
-      "id": "https://ops.example.mil/prompts/report-template-v3",
+      "id": "https://ops.example.domain/prompts/report-template-v3",
       "definition": {
         "type": "https://w3id.org/xapi/ai/activity-type/prompt",
         "name": {
@@ -282,7 +282,7 @@
       "contextActivities": {
         "parent": [
           {
-            "id": "https://ops.example.mil/tasks/ops-9087",
+            "id": "https://ops.example.domain/tasks/ops-9087",
             "objectType": "Activity"
           }
         ],
@@ -320,7 +320,7 @@
       "objectType": "Agent",
       "name": "OpsAgent-Alpha",
       "account": {
-        "homePage": "https://agents.example.mil",
+        "homePage": "https://agents.example.domain",
         "name": "agent-alpha"
       }
     },
@@ -331,7 +331,7 @@
       }
     },
     "object": {
-      "id": "https://reports.example.mil/readiness/week-04-FY26.pdf",
+      "id": "https://reports.example.domain/readiness/week-04-FY26.pdf",
       "definition": {
         "type": "https://w3id.org/xapi/ai/activity-type/resource",
         "name": {
@@ -348,13 +348,13 @@
       "contextActivities": {
         "parent": [
           {
-            "id": "https://ops.example.mil/runs/run-9012",
+            "id": "https://ops.example.domain/runs/run-9012",
             "objectType": "Activity"
           }
         ],
         "grouping": [
           {
-            "id": "https://ops.example.mil/sessions/sess-5577",
+            "id": "https://ops.example.domain/sessions/sess-5577",
             "objectType": "Activity"
           }
         ],
@@ -365,7 +365,7 @@
         ]
       },
       "extensions": {
-        "https://w3id.org/xapi/ai/extensions/resource-uri": "https://reports.example.mil/readiness/week-04-FY26.pdf",
+        "https://w3id.org/xapi/ai/extensions/resource-uri": "https://reports.example.domain/readiness/week-04-FY26.pdf",
         "https://w3id.org/xapi/ai/extensions/resource-hash": "sha256:9b74c9897bac770ffc029102a200c5de",
         "https://w3id.org/xapi/ai/extensions/resource-version": "v1"
       }
@@ -377,9 +377,9 @@
     "id": "9c8b77a3-671a-4d3c-8c9f-7d1836bb2233",
     "actor": {
       "objectType": "Agent",
-      "name": "Rugge CIV Sean M US",
+      "name": "Doe John",
       "account": {
-        "homePage": "https://id.example.mil",
+        "homePage": "https://id.example.domain",
         "name": "u-12345"
       }
     },
@@ -390,7 +390,7 @@
       }
     },
     "object": {
-      "id": "https://reports.example.mil/readiness/week-04-FY26.pdf",
+      "id": "https://reports.example.domain/readiness/week-04-FY26.pdf",
       "definition": {
         "type": "https://w3id.org/xapi/ai/activity-type/resource",
         "name": {
@@ -406,7 +406,7 @@
       "contextActivities": {
         "parent": [
           {
-            "id": "https://ops.example.mil/tasks/ops-9087",
+            "id": "https://ops.example.domain/tasks/ops-9087",
             "objectType": "Activity"
           }
         ],
@@ -432,7 +432,7 @@
       "objectType": "Agent",
       "name": "OpsAgent-Alpha",
       "account": {
-        "homePage": "https://agents.example.mil",
+        "homePage": "https://agents.example.domain",
         "name": "agent-alpha"
       }
     },
@@ -443,7 +443,7 @@
       }
     },
     "object": {
-      "id": "https://agents.example.mil/agent/dataagent-bravo",
+      "id": "https://agents.example.domain/agent/dataagent-bravo",
       "definition": {
         "type": "https://w3id.org/xapi/ai/activity-type/agent",
         "name": {
@@ -463,13 +463,13 @@
       "contextActivities": {
         "parent": [
           {
-            "id": "https://ops.example.mil/tasks/ops-9087",
+            "id": "https://ops.example.domain/tasks/ops-9087",
             "objectType": "Activity"
           }
         ],
         "grouping": [
           {
-            "id": "https://ops.example.mil/sessions/sess-5577",
+            "id": "https://ops.example.domain/sessions/sess-5577",
             "objectType": "Activity"
           }
         ],
